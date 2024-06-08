@@ -1,13 +1,22 @@
 import reactImage from "./assets/react-core-concepts.png";
-import { CORE_CONCEPTS } from "./information.js";
+import { CORE_CONCEPTS } from "./data.js";
 import Headers from "./components/Header";
 import CoreConcepts from "./components/CoreConcepts";
 import TabButton from "./components/TabButton.js";
+import {useState} from 'react';
+import { EXAMPLES } from "./data.js";
 
 function App() {
+
+  const [selectedOption, setSelectedOption] = useState()
+
+
   const handleClick = (selectedButton)=>{
     console.log(selectedButton + " button was clicked");
-}
+    setSelectedOption(selectedButton);
+  }
+
+
   return (
     <div>
       <Headers reactImage = {reactImage}/>
@@ -41,10 +50,18 @@ function App() {
           <h2>examples</h2>
           <menu>
             <TabButton onSelect={()=> handleClick("components")}>Components</TabButton>
-            <TabButton onSelect={()=> handleClick("JSX")}>JSX</TabButton>
-            <TabButton onSelect={()=> handleClick("Props")}>Props</TabButton>
-            <TabButton onSelect={()=> handleClick("State")}>State</TabButton>
+            <TabButton onSelect={()=> handleClick("jsx")}>JSX</TabButton>
+            <TabButton onSelect={()=> handleClick("props")}>Props</TabButton>
+            <TabButton onSelect={()=> handleClick("state")}>State</TabButton>
           </menu>
+          {!selectedOption && <p>Please select a topic</p>}
+          {selectedOption && <div id= "tab-content">
+            <h3>{EXAMPLES[selectedOption].title}</h3>
+            <p>{EXAMPLES[selectedOption].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedOption].code}</code>
+            </pre>
+          </div>}
         </section>
       </main>
     </div>
