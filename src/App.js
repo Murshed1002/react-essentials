@@ -12,7 +12,6 @@ function App() {
 
 
   const handleClick = (selectedButton)=>{
-    console.log(selectedButton + " button was clicked");
     setSelectedOption(selectedButton);
   }
 
@@ -25,6 +24,8 @@ function App() {
         <section id = "core-concepts">
         <h2>Core Concepts</h2>
           <ul>
+          {CORE_CONCEPTS.map(conceptsItem => <CoreConcepts key = {conceptsItem.title} {...conceptsItem}/>)}
+          
             <CoreConcepts {...CORE_CONCEPTS[0]}/>
             <CoreConcepts
               title = {CORE_CONCEPTS[1].title}
@@ -47,12 +48,12 @@ function App() {
           </ul>
         </section>
         <section id="examples">
-          <h2>examples</h2>
+          <h2 style={{margin : 13}}>examples</h2>
           <menu>
-            <TabButton onSelect={()=> handleClick("components")}>Components</TabButton>
-            <TabButton onSelect={()=> handleClick("jsx")}>JSX</TabButton>
-            <TabButton onSelect={()=> handleClick("props")}>Props</TabButton>
-            <TabButton onSelect={()=> handleClick("state")}>State</TabButton>
+            <TabButton className = {selectedOption === "components" ? 'active' : undefined} onSelect={()=> handleClick("components")}>Components</TabButton>
+            <TabButton className = {selectedOption === "jsx" ? 'active' : undefined} onSelect={()=> handleClick("jsx")}>JSX</TabButton>
+            <TabButton className = {selectedOption === "props" ? 'active' : undefined} onSelect={()=> handleClick("props")}>Props</TabButton>
+            <TabButton className = {selectedOption === "state" ? 'active' : undefined} onSelect={()=> handleClick("state")}>State</TabButton>
           </menu>
           {!selectedOption && <p>Please select a topic</p>}
           {selectedOption && <div id= "tab-content">
