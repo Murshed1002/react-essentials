@@ -1,6 +1,6 @@
 import reactImage from "./assets/react-core-concepts.png";
 import { CORE_CONCEPTS } from "./data.js";
-import Headers from "./components/Header";
+import Header from "./components/Header";
 import CoreConcepts from "./components/CoreConcepts";
 import TabButton from "./components/TabButton.js";
 import {useState} from 'react';
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <Headers reactImage = {reactImage}/>
+      <Header reactImage = {reactImage}/>
       <main>
         
         <section id = "core-concepts">
